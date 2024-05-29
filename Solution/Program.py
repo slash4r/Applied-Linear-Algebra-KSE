@@ -28,12 +28,14 @@ star = np.array([
 ])
 
 
-def plot_shape(ax, title: str, shape: np.array) -> None:
+def plot_shape(ax, title: str, shape_og: np.ndarray, shape_tr: np.ndarray = None) -> None:
     """
     Plot the shape with the given title (string) and shape (numpy array)
     """
     ax.clear()
-    ax.plot(shape[:, 0], shape[:, 1])
+    if shape_tr is not None:
+        ax.plot(shape_tr[:, 0], shape_tr[:, 1], c='r')
+    ax.plot(shape_og[:, 0], shape_og[:, 1])
     ax.set_title(title)
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
@@ -41,7 +43,7 @@ def plot_shape(ax, title: str, shape: np.array) -> None:
     ax.axis('equal')
 
 
-def rotate(shape: np.array, angle: float) -> np.array:
+def rotate(shape: np.ndarray, angle: float) -> np.ndarray:
     """
     Rotate the shape by the given angle (in degrees)
     """
@@ -58,6 +60,54 @@ def rotate(shape: np.array, angle: float) -> np.array:
 
     rotated_shape = rotation_matrix @ shape.T  # error here
     return rotated_shape.T
+
+
+def scale(shape: np.ndarray, x: float) -> np.ndarray:
+    """
+    Scale the shape by the given factor x
+    """
+    return shape * x
+
+
+def reflection(shape: np.ndarray, axis: np.ndarray) -> np.ndarray:
+
+    x, y = axis[0], axis[1]
+    matrix = np.array([
+            [x**2 - y**2, 2 * x * y],
+            [2 * x * y, y**2 - x**2]
+        ])
+
+    transformation_matrix = matrix / (x**2 + y**2)
+    reflected_shape = transformation_matrix @ shape.T
+    return reflected_shape.T
+
+
+def shear(shape: np.ndarray, coord: str, factor: float) -> np.ndarray:
+    """
+    Shear the shape by the given factor in the given direction
+    """
+    if coord == 'x':
+        shear_matrix = np.array([
+            [1, 0],
+            [factor, 1]
+        ])
+    elif coord == 'y':
+        shear_matrix = np.array([
+            [1, factor],
+            [0, 1]
+        ])
+    else:
+        raise ValueError("Invalid parameter coord. Must be 'x' or 'y'")
+    sheared_shape = shear_matrix @ shape.T
+    return sheared_shape.T
+
+
+def custom_transform(shape: np.ndarray, matrix: np.ndarray) -> np.ndarray:
+    """
+    Apply a custom transformation to the shape using the given matrix
+    """
+    transformed_shape = matrix @ shape.T
+    return transformed_shape.T
 
 
 def key_press(event):
@@ -86,7 +136,7 @@ def update_plot():
     plot_shape(ax1, title_og, original_shape)
 
     title_t, transformed_shape = transformations[current_transformation]
-    plot_shape(ax2, title_t, transformed_shape)
+    plot_shape(ax2, title_t, original_shape, transformed_shape)
     plt.draw()
 
 
@@ -96,7 +146,19 @@ originals = [
 ]
 transformations = [
     ("Rotated Batman 180 degrees", rotate(batman, 180)),
-    ("Rotated Star 90 degrees", rotate(star, 90))
+    ("Rotated Star 90 degrees", rotate(star, 90)),
+
+    ("Scaled Batman 2x", scale(batman, 2)),
+    ("Scaled Star 0.5x", scale(star, 0.5)),
+
+    ("Reflected Batman over xy-axis", reflection(batman, np.array([1, 1]))),
+    ("Reflected Star over x-axis", reflection(star, np.array([1, 0]))),
+
+    ("Sheared Batman in x-direction by 3", shear(batman, 'x', 0.5)),
+    ("Sheared Star in y-direction by 1", shear(star, 'y', 0.5)),
+
+    ("Custom Batman", custom_transform(batman, np.array([[6, 9], [9, 6]]))),
+    ("Custom Star", custom_transform(star, np.array([[1, -1], [2, 1]])))
 ]
 
 current_original = 0
@@ -104,7 +166,7 @@ current_transformation = 0
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 plot_shape(ax1, originals[0][0], originals[0][1])
-plot_shape(ax2, transformations[0][0], transformations[0][1])
+plot_shape(ax2, transformations[0][0], originals[0][1], transformations[0][1])
 
 fig.canvas.mpl_connect('key_press_event', key_press)
 plt.show()

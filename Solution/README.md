@@ -4,3 +4,10 @@ Used sources:
 - [plt axes](https://www.geeksforgeeks.org/matplotlib-axes-class/)
 - [Updating](https://youtu.be/PpzaVR3PaBY) and there were other vids...
 - [mpl_connect](https://matplotlib.org/stable/users/event_handling.html) + [ChatGPT](https://chat.openai.com/)(only for the purpose to interact with the user!!)
+- [shear matrix](https://youtu.be/fuBsMED8GOw?t=716)
+
+
+
+
+
+asdas
