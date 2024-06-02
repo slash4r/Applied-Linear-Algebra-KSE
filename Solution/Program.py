@@ -140,33 +140,35 @@ def update_plot():
     plt.draw()
 
 
-originals = [
-    ("Original Batman", batman),
-    ("Original Star", star)
-]
-transformations = [
-    ("Rotated Batman 180 degrees", rotate(batman, 180)),
-    ("Rotated Star 90 degrees", rotate(star, 90)),
+if __name__ == '__main__':
 
-    ("Scaled Batman 2x", scale(batman, 2)),
-    ("Scaled Star 0.5x", scale(star, 0.5)),
+    originals = [
+        ("Original Batman", batman),
+        ("Original Star", star)
+    ]
+    transformations = [
+        ("Rotated Batman 180 degrees", rotate(batman, 180)),
+        ("Rotated Star 90 degrees", rotate(star, 90)),
 
-    ("Reflected Batman over xy-axis", reflection(batman, np.array([1, 1]))),
-    ("Reflected Star over x-axis", reflection(star, np.array([1, 0]))),
+        ("Scaled Batman 2x", scale(batman, 2)),
+        ("Scaled Star 0.5x", scale(star, 0.5)),
 
-    ("Sheared Batman in x-direction by 3", shear(batman, 'x', 0.5)),
-    ("Sheared Star in y-direction by 1", shear(star, 'y', 0.5)),
+        ("Reflected Batman over xy-axis", reflection(batman, np.array([1, 1]))),
+        ("Reflected Star over x-axis", reflection(star, np.array([1, 0]))),
 
-    ("Custom Batman", custom_transform(batman, np.array([[6, 9], [9, 6]]))),
-    ("Custom Star", custom_transform(star, np.array([[1, -1], [2, 1]])))
-]
+        ("Sheared Batman in x-direction by 3", shear(batman, 'x', 0.5)),
+        ("Sheared Star in y-direction by 1", shear(star, 'y', 0.5)),
 
-current_original = 0
-current_transformation = 0
+        ("Custom Batman", custom_transform(batman, np.array([[6, 9], [9, 6]]))),
+        ("Custom Star", custom_transform(star, np.array([[1, -1], [2, 1]])))
+    ]
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
-plot_shape(ax1, originals[0][0], originals[0][1])
-plot_shape(ax2, transformations[0][0], originals[0][1], transformations[0][1])
+    current_original = 0
+    current_transformation = 0
 
-fig.canvas.mpl_connect('key_press_event', key_press)
-plt.show()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+    plot_shape(ax1, originals[0][0], originals[0][1])
+    plot_shape(ax2, transformations[0][0], originals[0][1], transformations[0][1])
+
+    fig.canvas.mpl_connect('key_press_event', key_press)
+    plt.show()

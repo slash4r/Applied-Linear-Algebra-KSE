@@ -8,8 +8,8 @@ Used sources:
 - [3D Plottings](https://youtu.be/fAztJg9oi7s)
 - [3D Pyramid](https://stackoverflow.com/questions/39408794/python-3d-pyramid)
 
+https://youtu.be/P5TfA5Y9jbo
 
-
-
-
-asdas
+- [Flip Method](https://www.geeksforgeeks.org/python-opencv-cv2-flip-method/)
+- [How to detect when a key is released in OpenCV?](https://stackoverflow.com/questions/59924396/how-to-detect-when-a-key-is-released-in-opencv)
+- [Working with Keyboards](https://codeloop.org/python-opencv-working-with-keyboards/)
