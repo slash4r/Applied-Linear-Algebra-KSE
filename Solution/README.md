@@ -1,6 +1,6 @@
-# 2D Shape Transformations
+# 2D and 3D Shape Transformations 🧙
 
-🚀 This project demonstrates various linear transformations on 2D shapes using Python's NumPy and Matplotlib libraries. The shapes included are a "Batman" logo and a star. The transformations include rotation, scaling, reflection, shearing, and custom transformations.
+🚀 This project demonstrates various linear transformations on 2D and 3D shapes using Python's NumPy, Matplotlib, and OpenCV libraries. The shapes included are a "Batman" logo, a star, and a pyramid. The transformations include rotation, scaling, reflection, shearing, and custom transformations.
 
 ## Getting Started
 
@@ -9,37 +9,52 @@
 - Python
 - NumPy
 - Matplotlib
-- OpenCV (for the second part of the assignment)
+- OpenCV (for image transformations)
+
+Install the required libraries using:
+```bash
+pip install numpy matplotlib opencv-python
+```
 
 ## Running the Code
 
 1. Save the code in a Python file, e.g., `transformations.py`.
 2. Ensure you have the required libraries installed.
-3. Run the script using Python IDE such as VSCode or Jupyter Notebook, or from the terminal using the command below
+3. Run the script using a Python IDE such as VSCode or Jupyter Notebook, or from the terminal using the command below:
 
 ```bash
 python transformations.py
 ```
 
-## Features
+## 🌟 Features
 
 ✨ **Shapes**
 
 - **Batman Logo**
 - **Star**
-- **Custom Images** (for the second part of the assignment)
+- **Pyramid**
+- **Custom Images** (for image transformations)
 
 ✨ **Transformations**
 
-- Rotation
-- Scaling
-- Reflection
-- Shearing
-- Custom transformations
+- **2D Transformations:**
+  - Rotation
+  - Scaling
+  - Reflection
+  - Shearing
+  - Custom transformations
+- **3D Transformations:**
+  - Rotation around X, Y, and Z axes
+  - Scaling
+  - Translation
+- **Image Transformations (OpenCV):**
+  - Rotation
+  - Scaling
+  - Reflection
 
-## Usage
+## 🤳 Usage
 
-🎮 **Key Bindings**
+🎮 **Key Bindings for 2D and 3D Transformations**
 
 - **Right Arrow**: Next transformation
 - **Left Arrow**: Previous transformation
@@ -50,8 +65,13 @@ python transformations.py
 
 The plot will update to show the original shape and the transformed shape side by side.
 
+🎮 **Key Bindings for Image Transformations (OpenCV)**
 
-## Used sources:
+- **ESC**: Exit the application
+- **A**: Previous transformation
+- **D**: Next transformation
+
+## ❕Used sources:
 - [numpy angles](https://numpy.org/doc/stable/reference/generated/numpy.rot90.html)
 - [rotate matrix](https://www.geeksforgeeks.org/numpy-radians-deg2rad-python/)
 - [plt axes](https://www.geeksforgeeks.org/matplotlib-axes-class/)
