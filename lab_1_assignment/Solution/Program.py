@@ -147,7 +147,7 @@ if __name__ == '__main__':
         ("Original Star", star)
     ]
     transformations = [
-        ("Rotated Batman 180 degrees", rotate(batman, 180)),
+        ("Rotated Batman 69 degrees", rotate(batman, 69)),
         ("Rotated Star 90 degrees", rotate(star, 90)),
 
         ("Scaled Batman 2x", scale(batman, 2)),
